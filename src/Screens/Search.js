@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, Dimensions, StyleSheet, Image, ScrollView, Text } from "react-native";
+import { View, Dimensions, StyleSheet, Image, ScrollView, Text, TouchableOpacity } from "react-native";
 import axios from "axios";
 import SearchBar from "../Components/SearchBar"; // Import SearchBar
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [categories, setCategories] = useState([]); // Trạng thái lưu danh sách danh mục
   const [books, setBooks] = useState([]); // Trạng thái lưu danh sách sách
+
+  const navigation = useNavigation(); // Khởi tạo navigation
 
   useEffect(() => {
     // Gọi API để lấy dữ liệu danh mục
@@ -40,6 +43,11 @@ const Search = () => {
     setSearchResults(results);
   };
 
+  const handleBookPress = (item) => {
+    // Điều hướng đến màn hình BookDetails và truyền dữ liệu sách
+    navigation.navigate('BookDetails', { book: item });
+  };
+
   return (
     <View style={{ marginTop: 20 }}>
       {/* Search Bar */}
@@ -51,19 +59,21 @@ const Search = () => {
           <Text style={styles.noResults}>No results found</Text>
         ) : (
           searchResults.map((item) => (
-            <View key={item.id} style={styles.card}>
-              <View style={styles.cardImgWrapper}>
-                <Image
-                  source={{ uri: item.image ? `http://10.0.2.2:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
-                  resizeMode="stretch"
-                  style={styles.cardImg}
-                />
+            <TouchableOpacity key={item.id} onPress={() => handleBookPress(item)}>
+              <View style={styles.card}>
+                <View style={styles.cardImgWrapper}>
+                  <Image
+                    source={{ uri: item.image ? `http://10.0.2.2:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
+                    resizeMode="stretch"
+                    style={styles.cardImg}
+                  />
+                </View>
+                <View style={styles.cardInfo}>
+                  <Text style={styles.cardTitle}>{item.name ? item.name : item.title}</Text>
+                  <Text style={styles.cardDetails}>{item.name ? "Amazing description for this Category" : item.author}</Text>
+                </View>
               </View>
-              <View style={styles.cardInfo}>
-                <Text style={styles.cardTitle}>{item.name ? item.name : item.title}</Text>
-                <Text style={styles.cardDetails}>{item.name ? "Amazing description for this Category" : item.author}</Text>
-              </View>
-            </View>
+            </TouchableOpacity>
           ))
         )}
       </ScrollView>
