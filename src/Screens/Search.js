@@ -63,7 +63,7 @@ const Search = () => {
               <View style={styles.card}>
                 <View style={styles.cardImgWrapper}>
                   <Image
-                    source={{ uri: item.image ? `http://10.0.2.2:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
+                    source={{ uri: item.image ? `http://192.168.1.9:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
                     resizeMode="stretch"
                     style={styles.cardImg}
                   />
