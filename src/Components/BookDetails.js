@@ -28,7 +28,7 @@ const BookDetails = ({ route, navigation }) => {
 
                 <View style={styles.top}>
                     <Image
-                      source={{ uri: book.image ? `http://10.0.2.2:3000${book.image}` : "URL_TO_DEFAULT_IMAGE" }}
+                      source={{ uri: book.image ? `http://192.168.1.9:3000${book.image}` : "URL_TO_DEFAULT_IMAGE" }}
                       style={styles.Coverimg}
                     />
 

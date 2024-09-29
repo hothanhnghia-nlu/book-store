@@ -18,15 +18,15 @@ export default class ScreensStack extends React.Component {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ size }) => {
             let iconname;
-            route.name == "Home"
+            route.name == "Trang chủ"
               ? (iconname = "home")
-              : route.name == "Categories"
+              : route.name == "Danh mục"
               ? (iconname = "bars")
-              : route.name == "Search"
+              : route.name == "Tìm kiếm"
               ? (iconname = "search1")
               : route.name == "Quotes"
               ? (iconname = "book")
-              : route.name == "Profile"
+              : route.name == "Tài khoản"
               ? (iconname = "user")
               : null;
             return <AntDesign name={iconname} size={size} color={iconcolor} />;
@@ -37,11 +37,11 @@ export default class ScreensStack extends React.Component {
           activeTintColor: iconcolor,
         }}
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Categories" component={Categories} />
-        <Tab.Screen name="Search" component={Search} />
+        <Tab.Screen name="Trang chủ" component={Home} />
+        <Tab.Screen name="Danh mục" component={Categories} />
+        <Tab.Screen name="Tìm kiếm" component={Search} />
         <Tab.Screen name="Quotes" component={Bookmarks} />
-        <Tab.Screen name="Profile" component={ProfileScreens} />
+        <Tab.Screen name="Tài khoản" component={ProfileScreens} />
       </Tab.Navigator>
     );
   }

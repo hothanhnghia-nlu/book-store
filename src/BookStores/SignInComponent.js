@@ -40,7 +40,7 @@ export default function SignInComponent() {
     const handleSingIn = async () => {
         if (isValidUser) {
             try {
-                const reponse = await fetch('http://192.168.1.10:3000/auth/login', {
+                const reponse = await fetch('http://192.168.1.9:3000/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,13 +75,13 @@ export default function SignInComponent() {
             </View>
 
             <Animatable.View style={styles.footer} animation="fadeInUpBig">
-                <Text style={styles.textWelcome}> Welcome back </Text>
-                <Text style={styles.text_bottom_welcome}> Login to your account </Text>
+                <Text style={styles.textWelcome}> Chào mừng trở lại! </Text>
+                <Text style={styles.text_bottom_welcome}> Đăng nhập tài khoản </Text>
 
                 <View style={[styles.action, {marginTop: 40}]}>
                     <Feather name="mail" color="#FF8C00" size={20}/>
                     <TextInput
-                        placeholder="User"
+                        placeholder="username"
                         style={styles.textInput}
                         onChangeText={(text) => checkUserValidation(text)}
                     />
@@ -96,7 +96,7 @@ export default function SignInComponent() {
                     <FontAwesome name="lock" color="#FF8C00" size={20}/>
                     {secureTextEntry ? (
                         <TextInput
-                            placeholder="Password (must be > 5 characters)"
+                            placeholder="password (must be > 5 characters)"
                             secureTextEntry={true}
                             style={styles.textInput}
                             value={password}
@@ -104,7 +104,7 @@ export default function SignInComponent() {
                         />
                     ) : (
                         <TextInput
-                            placeholder="Password (must be > 5 characters)"
+                            placeholder="Mật khẩu (phải trên 5 ký tự)"
                             style={styles.textInput}
                             value={password}
                             onChangeText={(text) => setPassword(text)}
@@ -125,17 +125,17 @@ export default function SignInComponent() {
                         style={styles.button_signIn}
                         onPress={handleSingIn}
                     >
-                        <Text style={styles.btnTextSignIn}>Login</Text>
+                        <Text style={styles.btnTextSignIn}>Đăng nhập</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.lastViewInFooter}>
-                    <Text style={{color: '#A0A0A0'}}>Don't have an account? </Text>
+                    <Text style={{color: '#A0A0A0'}}>Chưa có tài khoản? </Text>
                     <Text
                         style={styles.textSignUp}
                         onPress={() => navigation.navigate('SignUpScreen')}
                     >
-                        Sign up
+                        Đăng ký
                     </Text>
                 </View>
             </Animatable.View>

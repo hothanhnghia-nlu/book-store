@@ -17,7 +17,7 @@ const ProfileScreens = () => {
                 <View style={{ flexDirection: 'row', marginTop: "10%" }}>
                     <View style={styles.divider} />
                     <View style={styles.title}>
-                        <Text style={{ fontSize: 38, color: "#2D3436" }}> Personal <Text style={{ fontWeight: "300", color: "white" }}>Profile</Text></Text>
+                        <Text style={{ fontSize: 38, color: "#2D3436" }}> Hồ sơ <Text style={{ fontWeight: "300", color: "white" }}>Cá nhân</Text></Text>
                     </View>
                     <View style={styles.divider} />
                 </View>
@@ -63,7 +63,7 @@ const ProfileScreens = () => {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 15, color: '#FF8C00' }}>
                 <Button icon="account-edit" color="#FF8C00" mode="contained" >
-                    Edit
+                    Chỉnh sửa
              </Button>
             </View>
 

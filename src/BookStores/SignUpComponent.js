@@ -54,7 +54,7 @@ export default function SignUpComponent() {
     const handleSignUp = async () => {
         if (isValidUserName && password.length > 5) {
             try {
-                const response = await fetch('http://192.168.1.10:3000/auth/register', {
+                const response = await fetch('http://192.168.1.9:3000/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -93,12 +93,12 @@ export default function SignUpComponent() {
             </View>
 
             <Animatable.View style={styles.footer} animation="fadeInUpBig">
-                <Text style={styles.titleText}> Sign Up </Text>
+                <Text style={styles.titleText}> Đăng ký tài khoản </Text>
 
                 <View style={[styles.action, {marginTop: 40}]}>
                     <FontAwesome name="user-o" color="#FF8C00" size={20}/>
                     <TextInput
-                        placeholder="User Name"
+                        placeholder="username"
                         style={styles.textInput}
                         onChangeText={(text_userName) => checkNameValidation(text_userName)}
                     />
@@ -113,7 +113,7 @@ export default function SignUpComponent() {
                     <AntDesign name="phone" color="#FF8C00" size={20}/>
                     <TextInput
                         keyboardType="numeric"
-                        placeholder="Phone Number"
+                        placeholder="Số điện thoại"
                         style={styles.textInput}
                         onChangeText={(text_phoneNumber) => checkPhoneValidation(text_phoneNumber)}
                     />
@@ -142,7 +142,7 @@ export default function SignUpComponent() {
                     <FontAwesome name="lock" color="#FF8C00" size={20}/>
                     {secureTextEntry ? (
                         <TextInput
-                            placeholder="Password (must be > 5 characters)"
+                            placeholder="Mật khẩu (phải trên 5 ký tự)"
                             secureTextEntry={true}
                             style={styles.textInput}
                             value={password}
@@ -172,7 +172,7 @@ export default function SignUpComponent() {
                         style={styles.button_signUp}
                         onPress={handleSignUp}
                     >
-                        <Text style={styles.btnTextSignUp}>Sign Up</Text>
+                        <Text style={styles.btnTextSignUp}>Đăng ký</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>

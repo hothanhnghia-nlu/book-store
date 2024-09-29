@@ -22,11 +22,11 @@ export default class SplashComponent extends React.Component {
         <Animatable.View style={styles.footer}
           animation="fadeInUpBig" >
           <Text style={styles.title}>JOIN BOOKSTORE TODAY!</Text>
-          <Text style={styles.text}>Create an account to start reading</Text>
+          <Text style={styles.text}>Tạo tài khoản để bắt đầu đọc sách nào!</Text>
           <View style={styles.button}>
             <TouchableOpacity style={styles.button_getStarted}
               onPress={() => this.props.navigation.navigate("SignInScreen")}>
-              <Text style={styles.textSign}>Get started</Text>
+              <Text style={styles.textSign}>Bắt đầu ngay</Text>
               <MaterialIcons
                 name="navigate-next"
                 color="white"
