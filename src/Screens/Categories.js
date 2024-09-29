@@ -32,7 +32,7 @@ const Categories = () => {
           </View>
           <View style={styles.cardInfo}>
             <Text style={styles.cardTitle}>Funny Category</Text>
-           
+
             <Text style={styles.cardDetails}>
               Amazing description for this Category
             </Text>
