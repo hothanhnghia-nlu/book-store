@@ -8,6 +8,8 @@ const screen_width = Dimensions.get('window').width;
 const screen_height = Dimensions.get('window').height;
 
 const BookDetails = ({ route, navigation }) => {
+    const { book } = route.params; // Nhận dữ liệu sách từ route
+
     const scrollViewRef = useRef(null);
 
     const scrollToTop = () => {
@@ -19,26 +21,28 @@ const BookDetails = ({ route, navigation }) => {
     return (
         <GestureHandlerRootView style={styles.container}>
             <ScrollView ref={scrollViewRef}>
+                {/* Nút back ở góc trên cùng bên trái */}
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                    <Icon name="arrow-left" size={25} color="#000" />
+                </TouchableOpacity>
+
                 <View style={styles.top}>
-                    <Image source={{ uri: "https://upload.wikimedia.org/wikipedia/vi/7/71/HP1_posters.jpg" }} style={styles.Coverimg} />
+                    <Image
+                      source={{ uri: book.image ? `http://10.0.2.2:3000${book.image}` : "URL_TO_DEFAULT_IMAGE" }}
+                      style={styles.Coverimg}
+                    />
+
                     <View style={styles.btn}>
                         <LikeButton />
                     </View>
                 </View>
 
                 <View style={styles.textview}>
-                    <Text style={styles.header}>Harry Potter và Hòn đá phù thuỷ</Text>
-                    <Text style={styles.normaltext}>By: J. K. Rowling</Text>
+                    <Text style={styles.header}>{book.title}</Text>
+                    <Text style={styles.normaltext}>By: {book.author}</Text>
                     <Text style={styles.header}>Description</Text>
-                    <Text style={styles.normaltext}>
-                        Harry Potter and the Philosophers Stone is the first book in the seven-part Harry Potter series written by British author J.K. Rowling. Published on June 30, 1997 by Bloomsbury Publishers, this book sets the foundation for the following six books. It introduces readers to the magical world of Harry Potter and main characters, places, and terminology, while also raising questions that arent answered until subsequent books. This creates a sense of intrigue and curiosity among readers.
-
-                        The books original title in English was Harry Potter and the Philosophers Stone, but in the US, it was published under the title Harry Potter and the Sorcerers Stone, which is also used in the Vietnamese translation. In France, the book was titled Harry Potter à lécole des sorciers (Harry Potter at the School of Wizards). Changing book titles for different countries is common in the publishing industry to match the language and attract more readers, but it must be approved by the author.
-
-                        After the tragic death of James and Lily Potter, their son Harry is sent by Professor Albus Dumbledore to live with his aunt and uncle, the Dursleys. They mistreat him because they despise magic and anything mysterious, leaving Harry in the dark about himself and his parents, except for the fabricated story that they died in a car crash.
-
-                        On his eleventh birthday, Harry is visited by the giant Rubeus Hagrid, who tells him about his magical abilities and takes him to Hogwarts School of Witchcraft and Wizardry. There, Harry learns about his family history, including how they were killed by Voldemort, the most powerful Dark Wizard of all time. However, Harry miraculously survived, making him a hero in the wizarding world. At Hogwarts, Harry is sorted into Gryffindor house alongside his new friends Ronald Weasley and Hermione Granger. Their first year at Hogwarts doesnt go smoothly, as they encounter dangerous and mysterious secrets.
-                    </Text>
+                    {/* Thay book.description bằng book.content */}
+                    <Text style={styles.normaltext}>{book.content}</Text>
                 </View>
 
                 <TouchableOpacity style={styles.scrollToTopButton} onPress={scrollToTop}>
@@ -93,6 +97,16 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    // Thêm style cho nút back
+    backButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        padding: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.6)', // Nền sáng nhẹ
+        borderRadius: 30,
+        zIndex: 1,
     },
 });
 
