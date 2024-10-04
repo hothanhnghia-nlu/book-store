@@ -5,10 +5,12 @@ import Swiper from 'react-native-swiper';
 import { TouchableOpacity } from "react-native";
 import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import BookAPI from "../Services/BookAPI";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { StackView } from "react-navigation-stack";
 
 const data = {
   readMore: [
-    { 
+    {
       id: '1',
       title: 'Sách Mới 1',
       author: 'Tác giả 1',
@@ -85,14 +87,14 @@ const renderCategoryButton = (icon, text) => {
   return (
     <TouchableOpacity style={styles.categoryBtn}>
       <View style={styles.categoryIcon}>
-       {icon}
+        {icon}
       </View>
       <Text style={styles.categoryBtnTxt} numberOfLines={1}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
-const CategoryTittle = ({title}) => {
+const CategoryTittle = ({ title }) => {
   return (
     <TouchableOpacity style={styles.categoryTitleTO}>
       <Text style={styles.categoryTitleTx} numberOfLines={1}>{title}</Text>
@@ -101,26 +103,39 @@ const CategoryTittle = ({title}) => {
 };
 
 const BookItem = ({ title, author, image, rank }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  function toggle() {
+    setIsChecked(!isChecked);
+  }
+
   return (
-    <View style={styles.bookItem}>
-      <Image source={{ uri: image }} style={styles.bookImage} />
-      {/* Hiển thị số thứ tự nếu có index */}
-      {rank !== undefined && (
-        <View style={styles.rankBadge}>
-          <Text style={styles.rankText}>{rank}</Text>
-        </View>
-      )}
-      <Text 
-      style={styles.bookTitle}  
-      numberOfLines={2} 
-      ellipsizeMode="tail">{title}</Text>
-      <Text style={styles.bookAuthor}>{author}</Text>
-    </View>
+    <TouchableOpacity onPress={toggle}>
+      <View style={styles.bookItem}>
+        {isChecked ? (
+          <Icon name="check" size={30} color="green" />
+        ) : (
+          <Icon name="times" size={30} color="red" />
+        )}
+        <Image source={{ uri: image }} style={styles.bookImage} />
+        {/* Hiển thị số thứ tự nếu có index */}
+        {rank !== undefined && (
+          <View style={styles.rankBadge}>
+            <Text style={styles.rankText}>{rank}</Text>
+          </View>
+        )}
+        <Text
+          style={styles.bookTitle}
+          numberOfLines={2}
+          ellipsizeMode="tail">{title}</Text>
+        <Text style={styles.bookAuthor}>{author}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const RankBook = ({ title, items }) => {
-  
+
   return (
     <ScrollView>
       <Text style={styles.sectionTitle}>{title}</Text>
@@ -199,9 +214,9 @@ const Home = () => {
   const [popularBooks, setPopularBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
- 
+
   useEffect(() => {
-  
+
     const fetchAllBooks = async () => {
       try {
 
@@ -234,7 +249,7 @@ const Home = () => {
 
     fetchAllBooks();
   }, []);
-  
+
 
   return (
     <View style={styles.mainview}>
@@ -330,12 +345,12 @@ const Home = () => {
 
         <View style={styles.containerCategoryTitle}>
           <Text style={styles.sectionTitle}>Danh mục</Text>
-              <View style={styles.categoryTitle}>
-                <CategoryTittle title={"Mới Cập Nhật"}/>
-                <CategoryTittle title={"Đánh Giá Cao"}/>
-                <CategoryTittle title={"Mới Đăng"}/>
-                <CategoryTittle title={"Xem Nhiều"}/>
-              </View>
+          <View style={styles.categoryTitle}>
+            <CategoryTittle title={"Mới Cập Nhật"} />
+            <CategoryTittle title={"Đánh Giá Cao"} />
+            <CategoryTittle title={"Mới Đăng"} />
+            <CategoryTittle title={"Xem Nhiều"} />
+          </View>
         </View>
 
         <View style={styles.container}>
@@ -396,11 +411,11 @@ const styles = StyleSheet.create({
   categoryBtn: {
     marginHorizontal: 0,
     alignSelf: 'center',
-    marginRight: 0 ,
-    marginLeft:10,
-    paddingRight:8,
+    marginRight: 0,
+    marginLeft: 10,
+    paddingRight: 8,
     paddingLeft: 8,
-    backgroundColor:'#e6e5e7',
+    backgroundColor: '#e6e5e7',
     borderRadius: 12,
   },
   categoryIcon: {
@@ -416,7 +431,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     width: "auto",
     color: '#FF8C00',
-    paddingBottom:4,
+    paddingBottom: 4,
     paddingLeft: 4,
     paddingRight: 4,
   },
@@ -485,25 +500,25 @@ const styles = StyleSheet.create({
     whiteSpace: 'nowrap',
   },
   // categoryTitleTO categoryTitleTx
-  containerCategoryTitle:{
+  containerCategoryTitle: {
     marginTop: 16,
   },
-  categoryTitle:{
+  categoryTitle: {
     flexDirection: 'row',
-    flexWrap: 'wrap',        
-    justifyContent: 'space-between', 
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     padding: 2,
   },
-  categoryTitleTO:{
+  categoryTitleTO: {
     width: '48%',
-    marginVertical: 7, 
+    marginVertical: 7,
     alignItems: 'center',
     padding: 10,
-    backgroundColor:'#e6e5e7',
+    backgroundColor: '#e6e5e7',
     borderRadius: 6,
   },
-  categoryTitleTx:{
-    fontSize: 16,  
+  categoryTitleTx: {
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
