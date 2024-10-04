@@ -54,7 +54,7 @@ export default function SignUpComponent() {
     const handleSignUp = async () => {
         if (isValidUserName && password.length > 5) {
             try {
-                const response = await fetch('http://192.168.1.9:3000/auth/register', {
+                const response = await fetch('http://10.0.2.2:3000/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -40,7 +40,7 @@ export default function SignInComponent() {
     const handleSingIn = async () => {
         if (isValidUser) {
             try {
-                const reponse = await fetch('http://192.168.1.9:3000/auth/login', {
+                const reponse = await fetch('http://10.0.2.2:3000/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

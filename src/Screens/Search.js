@@ -15,7 +15,7 @@ const Search = () => {
     // Gọi API để lấy dữ liệu danh mục
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://192.168.1.9:3000/category");
+        const response = await axios.get("http://10.0.2.2:3000/category");
         setCategories(response.data); // Lưu dữ liệu vào trạng thái
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -25,7 +25,7 @@ const Search = () => {
     // Gọi API để lấy dữ liệu sách
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://192.168.1.9:3000/books");
+        const response = await axios.get("http://10.0.2.2:3000/books");
         setBooks(response.data); // Lưu dữ liệu vào trạng thái
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -63,7 +63,7 @@ const Search = () => {
               <View style={styles.card}>
                 <View style={styles.cardImgWrapper}>
                   <Image
-                    source={{ uri: item.image ? `http://192.168.1.9:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
+                    source={{ uri: item.image ? `http://10.0.2.2:3000${item.image}` : "URL_TO_DEFAULT_IMAGE" }} // Thay thế bằng URL hình ảnh thích hợp
                     resizeMode="stretch"
                     style={styles.cardImg}
                   />

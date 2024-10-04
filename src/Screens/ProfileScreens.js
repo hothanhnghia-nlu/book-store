@@ -7,7 +7,7 @@ import { MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
 
 const ProfileScreens = () => {
     // const { name,  email, phone } = props.route.params.Item
-    
+
     return (
         <View style={styles.root}>
             <LinearGradient
@@ -39,8 +39,7 @@ const ProfileScreens = () => {
             <Card style={styles.mycard} onPress={() => { Linking.openURL("mailto:OmarAli@gmail.com") }}>
                 <View style={styles.cardconent}>
                     <MaterialIcons style={{ margin: 4 }} name="email" size={32} color='#FF8C00' />
-                    <Text style={{ marginTop: 12, fontSize: 15 }}>milcahsssiiss@gmail.com</Text>
-
+                    <Text style={{ marginTop: 10, fontSize: 15 }}>milcahsssiiss@gmail.com</Text>
                 </View>
             </Card>
 
@@ -55,16 +54,16 @@ const ProfileScreens = () => {
             <Card style={styles.mycard} >
                 <View style={styles.cardconent}>
                     <FontAwesome5 style={{ margin: 4 }} name="home" size={24} color='#FF8C00' />
-                    <Text style={{ marginTop: 12, fontSize: 15 }}> Linh Trung, Thủ Đức, TP Hồ Chí Minh</Text>
+                    <Text style={{ marginTop: 10, fontSize: 15 }}> Linh Trung, Thủ Đức, TP Hồ Chí Minh</Text>
                 </View>
             </Card>
 
 
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 15, color: '#FF8C00' }}>
-                <Button icon="account-edit" color="#FF8C00" mode="contained" >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 64, color: '#FF8C00' }}>
+                <Button icon="account-edit" color="#FF8C00" mode="contained" style={{ backgroundColor: '#f90' }} >
                     Chỉnh sửa
-             </Button>
+                </Button>
             </View>
 
         </View>
@@ -83,7 +82,10 @@ const styles = StyleSheet.create({
     },
     mycard: {
         margin: 3,
-        marginTop: 10
+        marginTop: 10,
+        marginLeft: 16,
+        marginEnd: 16,
+        height: 50,
     },
     cardconent: {
         flexDirection: 'row',
