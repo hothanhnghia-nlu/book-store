@@ -5,6 +5,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Feather from 'react-native-vector-icons/Feather'
 import {TextInput} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as constants from '../constants';
 
 export default function SignInComponent() {
     const navigation = useNavigation();
@@ -55,6 +57,19 @@ export default function SignInComponent() {
                         Alert.alert('Lỗi', data.message);
                         return;
                     }
+
+                    // Set user data
+                    await data.id && AsyncStorage.setItem(constants.USER_ID, data.id);
+                    await data.username && AsyncStorage.setItem(constants.USER_USERNAME, data.username);
+                    await data.password && AsyncStorage.setItem(constants.USER_PASSWORD, data.password);
+                    await data.email && AsyncStorage.setItem(constants.USER_EMAIL, data.email);
+                    await data.phone && AsyncStorage.setItem(constants.USER_PHONE, data.phone);
+                    await data.image && AsyncStorage.setItem(constants.USER_IMAGE, data.image);
+                    await data.token && AsyncStorage.setItem(constants.USER_TOKEN, data.token);
+                    await data.role && AsyncStorage.setItem(constants.USER_ROLE, data.role);
+                    await data.address && AsyncStorage.setItem(constants.USER_ADDRESS, data.address);
+                    await data.dateAdded && AsyncStorage.setItem(constants.USER_DATE_ADDED, data.dateAdded);
+
                     navigation.navigate('HomeScreen');
                 } else {
                     Alert.alert('Lỗi', data.message || 'Something went wrong!'); // Hiển thị thông báo lỗi
