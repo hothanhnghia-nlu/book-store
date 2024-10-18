@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Text, StyleSheet, View, Image, ScrollView, FlatList, Animated, Dimensions } from "react-native";
+import { Text, StyleSheet, View, Image, ScrollView, FlatList, Animated, Dimensions, Alert } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import Swiper from 'react-native-swiper';
 import { TouchableOpacity } from "react-native";
@@ -7,6 +7,7 @@ import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import BookAPI from "../Services/BookAPI";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { StackView } from "react-navigation-stack";
+import { useNavigation } from "@react-navigation/native";
 
 const data = {
   readMore: [
@@ -77,15 +78,20 @@ const data = {
 };
 
 const categories = [
-  { icon: <FontAwesome name="bar-chart" size={33} color='#3c6e89' />, text: 'Xem nhiều' },
-  { icon: <FontAwesome name="star" size={35} color='#3c6e89' />, text: 'Đánh giá' },
-  { icon: <FontAwesome name="heart" size={35} color='#3c6e89' />, text: 'Yêu thích' },
-  { icon: <FontAwesome5 name="map" size={35} color='#3c6e89' />, text: 'Lịch Sử' },
+  { id: 1, icon: <FontAwesome name="bar-chart" size={33} color='#3c6e89' />, text: 'Xem nhiều' },
+  { id: 2, icon: <FontAwesome name="star" size={35} color='#3c6e89' />, text: 'Đánh giá' },
+  { id: 3, icon: <FontAwesome name="heart" size={35} color='#3c6e89' />, text: 'Yêu thích' },
+  { id: 4, icon: <FontAwesome5 name="map" size={35} color='#3c6e89' />, text: 'Lịch Sử' },
 ];
 
-const renderCategoryButton = (icon, text) => {
+const renderCategoryButton = (id, icon, text) => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.categoryBtn}>
+    <TouchableOpacity style={styles.categoryBtn} onPress={() => {
+        if (id === 3) {
+          navigation.navigate('BookFavorite')
+        }
+    }}  >
       <View style={styles.categoryIcon}>
         {icon}
       </View>
@@ -338,7 +344,7 @@ const Home = () => {
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <View style={styles.categoryContainer}>
-            {categories.map((category, index) => renderCategoryButton(category.icon, category.text))}
+            {categories.map((category, index) => renderCategoryButton(category.id, category.icon, category.text))}
           </View>
         </ScrollView>
 
