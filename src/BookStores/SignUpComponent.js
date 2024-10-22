@@ -68,7 +68,7 @@ export default function SignUpComponent() {
                 const data = await response.json();
 
                 if (response.ok) {
-                    if (data.id) {
+                    if (!data.id) {
                         Alert.alert('Lỗi', data.message);
                         return;
                     }
